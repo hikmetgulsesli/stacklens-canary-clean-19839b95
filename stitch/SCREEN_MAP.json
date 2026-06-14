@@ -1,0 +1,29 @@
+[
+  {
+    "screenId": "8ca9b01db20947e9825830fc8746ea83",
+    "name": "Record Editor - StackLens Canary Clean",
+    "type": "form",
+    "description": "Record Editor - StackLens Canary Clean screen",
+    "surfaceIds": [
+      "SURF_RECORD_EDITOR"
+    ]
+  },
+  {
+    "screenId": "8676464bd15f4f2bb3ac85dba9512b46",
+    "name": "Insights - StackLens Canary Clean",
+    "type": "app-screen",
+    "description": "Insights - StackLens Canary Clean screen",
+    "surfaceIds": [
+      "SURF_INSIGHTS"
+    ]
+  },
+  {
+    "screenId": "440053183a33420b9f72f2523a80dcb3",
+    "name": "Record Operations - StackLens Canary Clean",
+    "type": "app-screen",
+    "description": "Record Operations - StackLens Canary Clean screen",
+    "surfaceIds": [
+      "SURF_RECORD_OPERATIONS"
+    ]
+  }
+]

@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Record Operations - StackLens</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-dim": "#0b1326",
+              "secondary": "#b9c8de",
+              "on-tertiary": "#472a00",
+              "on-background": "#dae2fd",
+              "secondary-fixed-dim": "#b9c8de",
+              "surface-container-high": "#222a3d",
+              "primary": "#8ed5ff",
+              "primary-fixed": "#c4e7ff",
+              "on-tertiary-fixed-variant": "#653e00",
+              "outline-variant": "#3e484f",
+              "on-secondary-container": "#a7b6cc",
+              "surface": "#0b1326",
+              "outline": "#87929a",
+              "background": "#0b1326",
+              "on-primary-fixed": "#001e2c",
+              "tertiary-fixed": "#ffddb8",
+              "error-container": "#93000a",
+              "on-primary-container": "#004965",
+              "surface-container-low": "#131b2e",
+              "on-surface": "#dae2fd",
+              "on-secondary-fixed": "#0d1c2d",
+              "on-error": "#690005",
+              "inverse-on-surface": "#283044",
+              "tertiary": "#ffc176",
+              "primary-container": "#38bdf8",
+              "surface-container": "#171f33",
+              "secondary-container": "#39485a",
+              "on-primary-fixed-variant": "#004c69",
+              "surface-variant": "#2d3449",
+              "error": "#ffb4ab",
+              "surface-container-lowest": "#060e20",
+              "tertiary-container": "#f1a02b",
+              "inverse-primary": "#00668a",
+              "on-secondary-fixed-variant": "#39485a",
+              "tertiary-fixed-dim": "#ffb960",
+              "on-primary": "#00354a",
+              "surface-tint": "#7bd0ff",
+              "on-tertiary-container": "#613b00",
+              "surface-container-highest": "#2d3449",
+              "on-surface-variant": "#bdc8d1",
+              "on-error-container": "#ffdad6",
+              "secondary-fixed": "#d4e4fa",
+              "inverse-surface": "#dae2fd",
+              "on-tertiary-fixed": "#2a1700",
+              "surface-bright": "#31394d",
+              "on-secondary": "#233143",
+              "primary-fixed-dim": "#7bd0ff"
+            },
+            borderRadius: {
+              "DEFAULT": "0.125rem",
+              "lg": "0.25rem",
+              "xl": "0.5rem",
+              "full": "0.75rem"
+            },
+            spacing: {
+              "stack-md": "8px",
+              "container-padding": "16px",
+              "stack-sm": "4px",
+              "stack-lg": "16px",
+              "unit": "4px",
+              "gutter": "12px"
+            },
+            fontFamily: {
+              "headline-md": ["Inter"],
+              "label-sm": ["JetBrains Mono"],
+              "body-md": ["Inter"],
+              "body-sm": ["Inter"],
+              "label-md": ["JetBrains Mono"],
+              "headline-lg": ["Inter"]
+            },
+            fontSize: {
+              "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+              "label-sm": ["10px", { "lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+              "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+              "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+              "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+              "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .fill-icon { font-variation-settings: 'FILL' 1; }
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #2d3449; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #3e484f; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface h-screen flex overflow-hidden">
+<!-- SideNavBar -->
+<nav class="bg-surface-container-low text-primary font-label-md text-label-md border-r border-outline-variant flex flex-col h-full p-stack-lg gap-stack-md w-64 flex-shrink-0 z-40 hidden md:flex">
+<div class="mb-stack-lg flex items-center gap-stack-md">
+<div class="w-8 h-8 rounded bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined fill-icon">layers</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md text-on-surface">StackLens</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Canary Clean</p>
+</div>
+</div>
+<div class="flex-1 flex flex-col gap-unit">
+<a class="bg-secondary-container text-on-secondary-container rounded-lg p-stack-md flex items-center gap-stack-md transition-colors ease-out duration-150" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                Operations
+            </a>
+<a class="text-on-surface-variant hover:bg-surface-variant rounded-lg p-stack-md flex items-center gap-stack-md transition-colors ease-out duration-150" href="#">
+<span class="material-symbols-outlined">edit_note</span>
+                Editor
+            </a>
+<a class="text-on-surface-variant hover:bg-surface-variant rounded-lg p-stack-md flex items-center gap-stack-md transition-colors ease-out duration-150" href="#">
+<span class="material-symbols-outlined">analytics</span>
+                Insights
+            </a>
+</div>
+<div class="mt-auto flex flex-col gap-unit pt-stack-lg border-t border-outline-variant">
+<a class="text-on-surface-variant hover:bg-surface-variant rounded-lg p-stack-md flex items-center gap-stack-md transition-colors ease-out duration-150" href="#">
+<span class="material-symbols-outlined">help</span>
+                Support
+            </a>
+<a class="text-on-surface-variant hover:bg-surface-variant rounded-lg p-stack-md flex items-center gap-stack-md transition-colors ease-out duration-150" href="#">
+<span class="material-symbols-outlined">description</span>
+                Documentation
+            </a>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="flex-1 flex flex-col min-w-0 overflow-hidden">
+<!-- TopNavBar -->
+<header class="bg-surface-container text-primary font-body-md text-body-md border-b border-outline-variant flex justify-between items-center w-full px-container-padding h-12 z-50 flex-shrink-0">
+<div class="flex items-center gap-stack-lg md:hidden">
+<button class="text-on-surface-variant p-unit rounded hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<span class="font-headline-md text-headline-md font-bold text-primary">StackLens</span>
+</div>
+<div class="hidden md:flex gap-stack-lg h-full items-end">
+<a class="text-primary font-bold border-b-2 border-primary pb-1 px-unit transition-colors ease-out duration-150" href="#">Projects</a>
+</div>
+<div class="flex items-center gap-stack-md">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-2 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">search</span>
+<input class="h-8 pl-8 pr-3 bg-surface-container-highest border border-outline-variant rounded text-body-sm text-on-surface focus:border-primary focus:ring-1 focus:ring-primary transition-colors w-64 placeholder-on-surface-variant" placeholder="Search records... (Ctrl+K)" type="text"/>
+</div>
+<button class="text-on-surface-variant p-unit rounded hover:bg-surface-variant transition-colors ease-out duration-150 relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="text-on-surface-variant p-unit rounded hover:bg-surface-variant transition-colors ease-out duration-150">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-variant border border-outline-variant overflow-hidden ml-stack-sm cursor-pointer hover:border-primary transition-colors">
+<img alt="User avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsCTgyNAqb50DF7rwHI-V3f5ck1fKyFd4r9rKAOSBJwjXxG3YceSabG7N1JzAxXsxj_ntaF93pBpmWiGMUAt6UO7CIBCIMRfy71iY9yjMQehYrzR8i_J6iglZtgFhnUMEVmnbXL0mUZkVa7gItqXfhdPFMkDhr_P6Rw3X86fKIprrZduxz8CJR8DrKZqiBMCJyzbYa06rQ7WBocMjyFRiJrmXR_U2AH6VudNOod_yXglpzggh2P8_aP7XWvkp4xpKfr_9sacQB89Q"/>
+</div>
+</div>
+</header>
+<!-- Page Content -->
+<main class="flex-1 overflow-y-auto p-container-padding flex flex-col gap-stack-lg">
+<!-- Page Header & Actions -->
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-stack-md">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Record Operations</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Inspecting module stack health across active clusters.</p>
+</div>
+<div class="flex gap-stack-md w-full sm:w-auto">
+<button class="bg-surface-container-highest border border-outline-variant text-on-surface hover:bg-surface-variant px-3 h-8 rounded flex items-center gap-unit font-label-md text-label-md transition-colors flex-1 sm:flex-none justify-center">
+<span class="material-symbols-outlined text-[16px]">filter_list</span>
+                        Filter
+                    </button>
+<button class="bg-primary text-on-primary hover:bg-primary-container px-4 h-8 rounded font-label-md text-label-md transition-colors flex items-center gap-unit flex-1 sm:flex-none justify-center">
+<span class="material-symbols-outlined text-[16px]">add</span>
+                        Create Record
+                    </button>
+</div>
+</div>
+<!-- Summary Metrics -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-stack-md">
+<div class="bg-surface-container-high rounded border border-outline-variant p-stack-md">
+<div class="flex justify-between items-start mb-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Total Records</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">database</span>
+</div>
+<div class="font-headline-lg text-headline-lg text-on-surface">1,492</div>
+<div class="font-body-sm text-body-sm text-primary mt-1 flex items-center gap-unit">
+<span class="material-symbols-outlined text-[14px]">arrow_upward</span>
+                        12% from last week
+                    </div>
+</div>
+<div class="bg-surface-container-high rounded border border-error-container p-stack-md relative overflow-hidden">
+<div class="absolute inset-0 bg-error-container opacity-10"></div>
+<div class="flex justify-between items-start mb-2 relative z-10">
+<span class="font-label-sm text-label-sm text-error uppercase">Active Risks</span>
+<span class="material-symbols-outlined text-error text-[18px]">warning</span>
+</div>
+<div class="font-headline-lg text-headline-lg text-on-surface relative z-10">24</div>
+<div class="font-body-sm text-body-sm text-error mt-1 flex items-center gap-unit relative z-10">
+<span class="material-symbols-outlined text-[14px]">priority_high</span>
+                        Requires attention
+                    </div>
+</div>
+<div class="bg-surface-container-high rounded border border-outline-variant p-stack-md">
+<div class="flex justify-between items-start mb-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Recent Events</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">history</span>
+</div>
+<div class="font-headline-lg text-headline-lg text-on-surface">384/h</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant mt-1 flex items-center gap-unit">
+<span class="material-symbols-outlined text-[14px]">sync</span>
+                        Normal load
+                    </div>
+</div>
+</div>
+<!-- Content Area: Table + Preview Panel -->
+<div class="flex gap-stack-lg flex-1 min-h-[400px]">
+<!-- Main Data Table -->
+<div class="flex-1 bg-surface-container border border-outline-variant rounded flex flex-col overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-highest border-b border-outline-variant">
+<th class="p-3 font-label-sm text-label-sm text-on-surface-variant uppercase font-medium">Module Name</th>
+<th class="p-3 font-label-sm text-label-sm text-on-surface-variant uppercase font-medium">Stack Status</th>
+<th class="p-3 font-label-sm text-label-sm text-on-surface-variant uppercase font-medium">Last Health Check</th>
+<th class="p-3 font-label-sm text-label-sm text-on-surface-variant uppercase font-medium">Risk Indicator</th>
+<th class="p-3 w-10"></th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm divide-y divide-outline-variant">
+<!-- Row 1 (Selected) -->
+<tr class="hover:bg-surface-variant transition-colors cursor-pointer bg-surface-container-high">
+<td class="p-3 flex items-center gap-stack-md">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<div>
+<div class="text-on-surface font-medium">auth-gateway-svc</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">v2.4.1-beta</div>
+</div>
+</td>
+<td class="p-3">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary-container/20 text-primary border border-primary-container/30 font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[12px]">check_circle</span> Healthy
+                                        </span>
+</td>
+<td class="p-3 text-on-surface-variant">2 mins ago</td>
+<td class="p-3">
+<div class="w-16 h-1.5 bg-surface-container-highest rounded overflow-hidden">
+<div class="h-full bg-primary w-1/4"></div>
+</div>
+</td>
+<td class="p-3 text-right">
+<button class="text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined text-[18px]">more_vert</span></button>
+</td>
+</tr>
+<!-- Row 2 (Warning) -->
+<tr class="hover:bg-surface-variant transition-colors cursor-pointer">
+<td class="p-3 flex items-center gap-stack-md">
+<div class="w-2 h-2 rounded-full bg-tertiary"></div>
+<div>
+<div class="text-on-surface font-medium">payment-processor</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">v1.9.0</div>
+</div>
+</td>
+<td class="p-3">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-tertiary-container/20 text-tertiary border border-tertiary-container/30 font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[12px]">warning</span> Warning
+                                        </span>
+</td>
+<td class="p-3 text-on-surface-variant">15 mins ago</td>
+<td class="p-3">
+<div class="w-16 h-1.5 bg-surface-container-highest rounded overflow-hidden">
+<div class="h-full bg-tertiary w-3/4"></div>
+</div>
+</td>
+<td class="p-3 text-right">
+<button class="text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined text-[18px]">more_vert</span></button>
+</td>
+</tr>
+<!-- Row 3 (Critical) -->
+<tr class="hover:bg-surface-variant transition-colors cursor-pointer border-l-2 border-l-error">
+<td class="p-3 flex items-center gap-stack-md">
+<div class="w-2 h-2 rounded-full bg-error"></div>
+<div>
+<div class="text-on-surface font-medium">user-session-db</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">v3.0.2</div>
+</div>
+</td>
+<td class="p-3">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-error-container/20 text-error border border-error-container/30 font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[12px]">error</span> Critical
+                                        </span>
+</td>
+<td class="p-3 text-on-surface-variant">45 secs ago</td>
+<td class="p-3">
+<div class="w-16 h-1.5 bg-surface-container-highest rounded overflow-hidden">
+<div class="h-full bg-error w-full"></div>
+</div>
+</td>
+<td class="p-3 text-right">
+<button class="text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined text-[18px]">more_vert</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Selected Item Preview Panel -->
+<div class="w-80 bg-surface-container-high border border-outline-variant rounded flex flex-col flex-shrink-0 hidden lg:flex">
+<div class="p-stack-md border-b border-outline-variant flex justify-between items-center bg-surface-container">
+<span class="font-label-md text-label-md text-on-surface">Preview: auth-gateway</span>
+<button class="text-on-surface-variant hover:text-on-surface transition-colors p-unit rounded hover:bg-surface-variant">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<div class="p-stack-md flex-1 overflow-y-auto flex flex-col gap-stack-lg">
+<!-- Module Details -->
+<div>
+<div class="font-label-sm text-label-sm text-on-surface-variant uppercase mb-2">Module Details</div>
+<div class="bg-surface-container p-3 rounded border border-outline-variant">
+<div class="flex justify-between mb-1">
+<span class="text-body-sm text-on-surface-variant">Cluster</span>
+<span class="text-body-sm text-on-surface font-label-sm">us-east-1a</span>
+</div>
+<div class="flex justify-between mb-1">
+<span class="text-body-sm text-on-surface-variant">Uptime</span>
+<span class="text-body-sm text-on-surface font-label-sm">14d 2h 45m</span>
+</div>
+<div class="flex justify-between">
+<span class="text-body-sm text-on-surface-variant">Maintainer</span>
+<span class="text-body-sm text-on-surface">SecOps Team</span>
+</div>
+</div>
+</div>
+<!-- Activity Events Logs -->
+<div>
+<div class="font-label-sm text-label-sm text-on-surface-variant uppercase mb-2 flex justify-between items-center">
+                                ActivityEvent Logs
+                                <a class="text-primary hover:underline" href="#">View All</a>
+</div>
+<div class="flex flex-col gap-2">
+<div class="bg-surface-container p-2 rounded border-l-2 border-primary border border-outline-variant text-body-sm">
+<div class="text-on-surface-variant font-label-sm text-[10px] mb-1">10:45:22 AM</div>
+<div class="text-on-surface break-words font-label-sm">Config map reload triggered by system.</div>
+</div>
+<div class="bg-surface-container p-2 rounded border-l-2 border-outline-variant border border-outline-variant text-body-sm opacity-70">
+<div class="text-on-surface-variant font-label-sm text-[10px] mb-1">09:12:05 AM</div>
+<div class="text-on-surface break-words font-label-sm">Routine health check passed.</div>
+</div>
+</div>
+</div>
+<!-- Preferences -->
+<div class="mt-auto">
+<div class="font-label-sm text-label-sm text-on-surface-variant uppercase mb-2">Preference Settings</div>
+<div class="bg-surface-container p-3 rounded border border-outline-variant flex flex-col gap-3">
+<label class="flex items-center justify-between cursor-pointer">
+<span class="text-body-sm text-on-surface">Auto-scaling</span>
+<div class="relative inline-block w-8 h-4 rounded-full bg-primary-container transition-colors">
+<div class="absolute right-0 top-0 w-4 h-4 rounded-full bg-primary shadow-sm transform translate-x-0"></div>
+</div>
+</label>
+<label class="flex items-center justify-between cursor-pointer">
+<span class="text-body-sm text-on-surface">Debug Logging</span>
+<div class="relative inline-block w-8 h-4 rounded-full bg-surface-variant border border-outline-variant transition-colors">
+<div class="absolute left-0 top-0 w-4 h-4 rounded-full bg-outline shadow-sm transform translate-x-0"></div>
+</div>
+</label>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

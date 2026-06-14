@@ -1,0 +1,35 @@
+[
+  {
+    "screenId": "8ca9b01db20947e9825830fc8746ea83",
+    "title": "Record Editor - StackLens Canary Clean",
+    "htmlFile": "8ca9b01db20947e9825830fc8746ea83.html",
+    "deviceType": "DESKTOP",
+    "htmlUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sX2ZlMjE5ZDIxMjViMTQ2Y2Y5ZTk3MDBjZDBjZjNhNzU1EgsSBxCN19Wi9xcYAZIBIwoKcHJvamVjdF9pZBIVQhM5MjQxMTMxNTM0MzQxODE5OTUy&filename=&opi=96797242",
+    "localHtml": "/Users/setrox/projects/stacklens-canary-clean-19839b95/stitch/8ca9b01db20947e9825830fc8746ea83.html",
+    "surfaceIds": [
+      "SURF_RECORD_EDITOR"
+    ]
+  },
+  {
+    "screenId": "8676464bd15f4f2bb3ac85dba9512b46",
+    "title": "Insights - StackLens Canary Clean",
+    "htmlFile": "8676464bd15f4f2bb3ac85dba9512b46.html",
+    "deviceType": "DESKTOP",
+    "htmlUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sX2QyYWNiNzc1MDA4ZjQ0NDg4YjNmMmIyNzk3ZWQ4ZjNjEgsSBxCN19Wi9xcYAZIBIwoKcHJvamVjdF9pZBIVQhM5MjQxMTMxNTM0MzQxODE5OTUy&filename=&opi=96797242",
+    "localHtml": "/Users/setrox/projects/stacklens-canary-clean-19839b95/stitch/8676464bd15f4f2bb3ac85dba9512b46.html",
+    "surfaceIds": [
+      "SURF_INSIGHTS"
+    ]
+  },
+  {
+    "screenId": "440053183a33420b9f72f2523a80dcb3",
+    "title": "Record Operations - StackLens Canary Clean",
+    "htmlFile": "440053183a33420b9f72f2523a80dcb3.html",
+    "deviceType": "DESKTOP",
+    "htmlUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sX2EzYjE0ZDZkZDk4MzRmN2Y5NmU4ODQ1ZDZjNWNmM2Q1EgsSBxCN19Wi9xcYAZIBIwoKcHJvamVjdF9pZBIVQhM5MjQxMTMxNTM0MzQxODE5OTUy&filename=&opi=96797242",
+    "localHtml": "/Users/setrox/projects/stacklens-canary-clean-19839b95/stitch/440053183a33420b9f72f2523a80dcb3.html",
+    "surfaceIds": [
+      "SURF_RECORD_OPERATIONS"
+    ]
+  }
+]
